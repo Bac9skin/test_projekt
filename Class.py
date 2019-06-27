@@ -1,27 +1,49 @@
-class AClass():
-    name = "Uasya"
-
-    def __init__(self, name, first_name):
-        self.name = name
-        self.first_name = first_name
+from datetime import datetime
 
 
-    def __setattr__ (self, name, value):
-        print(name, value, "Ystanovka")
-        super(). __seatler__(name, value)
+class Person():
+
+    def __init__(self):
+        self.__birth_day = datetime.now()
+        self._name = None
+
+    def set_name(self, name):
+        self._name = name
+
+    def get_name(self):
+        return self._name
+
+    def get_birth_day(self):
+        return self.__birth_day
+
+
+class Human(Person):
+
+    def __init__(self, name):
+        super().__init__()
+        self._name = name
+
+
+class Man(Human):
+    __sex = "M"
+
+    def get_sex(self):
+        return self.__sex
+
+
+class Woman(Human):
+    __sex = "F"
+
+    def get_sex(self):
+        return self.__sex
 
 
 if __name__ == '__main__':
-    a = AClass("A", "Object")
-    b = AClass("B", "Object")
-    a.attr1 = 1
-    print(dir(a))
-    print(dir(b))
-    print(a.__dict__)
-    print(b.__dict__)
-    print(dir(a.name))
-    print(dir(b.name))
-    print(a.first_name)
-    print(b.first_name)
-    print(a)
-    print(b)
+    masha = Woman("Masha")
+    print(masha.get_name())
+    vasya = Man("Vasya")
+    print(vasya.get_name())
+    print(vasya.get_birth_day())
+
+    print(masha.get_sex())
+    print(vasya.get_sex())
